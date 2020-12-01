@@ -13,18 +13,10 @@ geo585 = xr.open_dataset(filepath1)
 geo585['time'] = pd.date_range(start='2019', end='2101', freq='1A')
 cropyield = geo585['yield']
 corn = cropyield.sel(crops=0)
-cornrain = cropyield.sel(crops=1)
-cornirr = cropyield.sel(crops=2)
 rice = cropyield.sel(crops=3)
-ricerain = cropyield.sel(crops=4)
-riceirr = cropyield.sel(crops=5)
 soy = cropyield.sel(crops=6)
-soyrain = cropyield.sel(crops=7)
-soyirr = cropyield.sel(crops=8)
 wheat = cropyield.sel(crops=9)
-wheatrain = cropyield.sel(crops=10)
-wheatirr = cropyield.sel(crops=11)
-totalyield = corn + cornrain + cornirr + rice + ricerain + riceirr + soy + soyrain + soyirr + wheat + wheatrain + wheatirr
+totalyield = corn + rice + soy + wheat
 #How to convert yield to calories?
 #CO2
 CO2 = open('/glade/p/univ/urtg0006/OVERSHOOT/plot/CO2SSP585.txt', 'r')
