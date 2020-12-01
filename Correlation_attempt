@@ -5,7 +5,7 @@ import cartopy.crs as ccrs
 import numpy as np
 import matplotlib.colors as colors
 import pandas as pd
-#titalyield
+#totalyield
 filedir = '/glade/p/univ/urtg0006/OVERSHOOT/Brendan/files/crop/'
 filename1 = 'b.e21.BWSSP585cmip6.f09_g17.CMIP6-SSP5-8.5-WACCM.feedback.15C.001_2019-2100_yield_latlon_CLM5mask_6crops.nc'
 filepath1 = filedir + filename1
