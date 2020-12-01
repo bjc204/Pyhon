@@ -1,0 +1,39 @@
+import xarray as xr
+import matplotlib.pyplot as plt
+%matplotlib
+import cartopy.crs as ccrs
+import numpy as np
+import matplotlib.colors as colors
+import pandas as pd
+#titalyield
+filedir = '/glade/p/univ/urtg0006/OVERSHOOT/Brendan/files/crop/'
+filename1 = 'b.e21.BWSSP585cmip6.f09_g17.CMIP6-SSP5-8.5-WACCM.feedback.15C.001_2019-2100_yield_latlon_CLM5mask_6crops.nc'
+filepath1 = filedir + filename1
+geo585 = xr.open_dataset(filepath1)
+geo585['time'] = pd.date_range(start='2019', end='2101', freq='1A')
+cropyield = geo585['yield']
+corn = cropyield.sel(crops=0)
+cornrain = cropyield.sel(crops=1)
+cornirr = cropyield.sel(crops=2)
+rice = cropyield.sel(crops=3)
+ricerain = cropyield.sel(crops=4)
+riceirr = cropyield.sel(crops=5)
+soy = cropyield.sel(crops=6)
+soyrain = cropyield.sel(crops=7)
+soyirr = cropyield.sel(crops=8)
+wheat = cropyield.sel(crops=9)
+wheatrain = cropyield.sel(crops=10)
+wheatirr = cropyield.sel(crops=11)
+totalyield = corn + cornrain + cornirr + rice + ricerain + riceirr + soy + soyrain + soyirr + wheat + wheatrain + wheatirr
+#How to convert yield to calories?
+#CO2
+CO2 = open('/glade/p/univ/urtg0006/OVERSHOOT/plot/CO2SSP585.txt', 'r')
+#How to define time units for CO2?
+#Sulfur Burden
+filedir2 = '/glade/p/univ/urtg0006/OVERSHOOT/originalfiles/SO4/'
+filename2 = 'b.e21.BWSSP585cmip6.f09_g17.CMIP6-SSP5-8.5-WACCM.001.cam.h0zm.BURDENSO4dn.201501-210012.nc'
+filepath2 = filedir2 + filename2
+sulfurgeo = xr.open_dataset(filepath2)
+sulfurburden = sulfurgeo['BURDENSO4dn']
+sulfur = sulfurburden.sel(time=slice('2019-01-01', '2101-01-01'))
+#How to convert time units for sulfur from months to years?
